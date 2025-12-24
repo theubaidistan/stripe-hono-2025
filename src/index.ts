@@ -189,12 +189,140 @@ app.get("/", (c) => {
   return c.html(html);
 });
 
+// app.get("/success", (c) => {
+//   return c.text("Success!");
+// });
+
 app.get("/success", (c) => {
-  return c.text("Success!");
+  const html = `
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Success</title>
+      <style>
+        body {
+          font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          height: 100vh;
+          margin: 0;
+          background: linear-gradient(135deg, #6EE7B7, #3B82F6);
+          color: #fff;
+        }
+        .card {
+          background: rgba(255, 255, 255, 0.1);
+          padding: 3rem 5rem;
+          border-radius: 1rem;
+          text-align: center;
+          box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+          backdrop-filter: blur(10px);
+        }
+        h1 {
+          font-size: 3rem;
+          margin: 0 0 1rem 0;
+        }
+        p {
+          font-size: 1.2rem;
+          margin: 0;
+        }
+        a {
+          display: inline-block;
+          margin-top: 2rem;
+          text-decoration: none;
+          color: #3B82F6;
+          font-weight: bold;
+          background: #fff;
+          padding: 0.7rem 1.5rem;
+          border-radius: 0.5rem;
+          transition: 0.3s;
+        }
+        a:hover {
+          background: #e0e7ff;
+          color: #1e40af;
+        }
+      </style>
+    </head>
+    <body>
+      <div class="card">
+        <h1>Success!</h1>
+        <p>Your action was completed successfully.</p>
+        <a href="/">Go Back Home</a>
+      </div>
+    </body>
+    </html>
+  `;
+  return c.html(html);
 });
 
+// app.get("/cancel", (c) => {
+//   return c.text("Session Cancel");
+// });
+
 app.get("/cancel", (c) => {
-  return c.text("Hello Hono!");
+  const html = `
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Session Canceled</title>
+      <style>
+        body {
+          font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          height: 100vh;
+          margin: 0;
+          background: linear-gradient(135deg, #F87171, #B91C1C);
+          color: #fff;
+        }
+        .card {
+          background: rgba(255, 255, 255, 0.1);
+          padding: 3rem 5rem;
+          border-radius: 1rem;
+          text-align: center;
+          box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+          backdrop-filter: blur(10px);
+        }
+        h1 {
+          font-size: 3rem;
+          margin: 0 0 1rem 0;
+        }
+        p {
+          font-size: 1.2rem;
+          margin: 0;
+        }
+        a {
+          display: inline-block;
+          margin-top: 2rem;
+          text-decoration: none;
+          color: #B91C1C;
+          font-weight: bold;
+          background: #fff;
+          padding: 0.7rem 1.5rem;
+          border-radius: 0.5rem;
+          transition: 0.3s;
+        }
+        a:hover {
+          background: #fee2e2;
+          color: #7f1d1d;
+        }
+      </style>
+    </head>
+    <body>
+      <div class="card">
+        <h1>Session Canceled</h1>
+        <p>Your checkout session was canceled.</p>
+        <a href="/">Return Home</a>
+      </div>
+    </body>
+    </html>
+  `;
+  return c.html(html);
 });
 
 app.get("/favicon.ico", (c) => {
