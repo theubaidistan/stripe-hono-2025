@@ -15,7 +15,7 @@
 // })
 
 //*-----------------------------------------------------------------
-import { serve } from "@hono/node-server";
+// import { serve } from "@hono/node-server";
 import { Hono } from "hono";
 import Stripe from "stripe";
 import "dotenv/config";
@@ -25,6 +25,9 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
   apiVersion: "2025-12-15.clover",
 });
 // console.log(process.env.STRIPE_SECRET_KEY);
+
+// Base URL (your Vercel domain)
+const BASE_URL = process.env.BASE_URL || "http://localhost:3000";
 const app = new Hono();
 
 /*
@@ -198,8 +201,8 @@ app.post("/checkout", async (c) => {
         },
       ],
       mode: "subscription",
-      success_url: "http://localhost:3000/success",
-      cancel_url: "http://localhost:3000/cancel",
+      success_url: `${BASE_URL}/success`,
+      cancel_url: `${BASE_URL}/cancel`,
     });
 
     return c.json(session);
@@ -246,7 +249,10 @@ app.post("/webhook", async (c) => {
 const port = 3000;
 console.log(`Server is running on port ${port}`);
 
-serve({
-  fetch: app.fetch,
-  port,
-});
+// serve({
+//   fetch: app.fetch,
+//   port,
+// });
+
+// ✅ Export app as default for Vercel serverless
+export default app;
