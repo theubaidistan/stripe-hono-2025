@@ -157,7 +157,7 @@ app.get("/", (c) => {
     </head>
     <body>
       <div class="container">
-        <h1>Checkout</h1>
+        <h1>Stripe Checkout</h1>
         <button id="checkoutButton">Pay Now</button>
       </div>
 
