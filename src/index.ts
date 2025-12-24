@@ -20,6 +20,8 @@ import { Hono } from "hono";
 import Stripe from "stripe";
 import "dotenv/config";
 import { HTTPException } from "hono/http-exception";
+import fs from "fs";
+import path from "path";
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
   apiVersion: "2025-12-15.clover",
@@ -80,7 +82,7 @@ app.get("/", (c) => {
       <meta charset="UTF-8" />
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <title>Checkout</title>
-      <link rel="icon" href="https://stripe.com/img/v3/newsroom/social.png" type="image/png" />
+      <link rel="icon" href="/favicon.ico" type="image/x-icon" />
 
       <script src="https://js.stripe.com/v3/"></script>
       <style>
@@ -189,6 +191,14 @@ app.get("/success", (c) => {
 
 app.get("/cancel", (c) => {
   return c.text("Hello Hono!");
+});
+
+app.get("/favicon.ico", (c) => {
+  const filePath = path.join(process.cwd(), "public", "favicon.ico");
+  const buffer = fs.readFileSync(filePath);
+  return c.body(buffer, 200, {
+    "Content-Type": "image/x-icon",
+  });
 });
 
 app.post("/checkout", async (c) => {
